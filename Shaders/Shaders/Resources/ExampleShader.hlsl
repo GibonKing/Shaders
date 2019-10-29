@@ -76,22 +76,35 @@ void VSMain(const VSInput input, out PSInput output)
 	float y = cos(radians((input.pos.y * 10) + g_frameCount * 4));
 	float z = sin(radians((input.pos.z * 02) + g_frameCount * 4));
 	output.pos = mul(input.pos, g_WVP) + float4(0, y, 0, 0);
+
+	float texX = (input.pos.x + 512) / 1024.0f;
+	float texZ = 1 - ((input.pos.z + 512) / 1024.0f);
+	output.colour = g_materialMap.SampleLevel(g_sampler, float2(texX, texZ), 0);
+
 	output.normal = input.normal;
 	output.tex = input.tex;
-	output.colour = input.colour;
 }
 
 // The pixel shader entry point. This function writes out the fragment/pixel colour.
 void PSMain(const PSInput input, out PSOutput output)
 {
+	//Lighting
 	float3 colourAmount = float3(0.0f, 0.0f, 0.0f);
 	for (int i = 0; i < g_numLights; i++) {
 		float3 intensity = cos(dot(g_lightDirections[i].xyz, input.normal));
 		colourAmount += intensity * g_lightColours[i];
 	}
 
-	colourAmount /= g_numLights;
+	//Texture
+	float4 MossIntensity	= g_texture0.Sample(g_sampler, input.tex);
+	float4 GrassIntensity	= g_texture1.Sample(g_sampler, input.tex);
+	float4 AsphaltIntensity = g_texture2.Sample(g_sampler, input.tex);
+	float3 colour = (0.0f, 0.0f, 0.0f);
 
-	output.colour.xyz = input.colour * colourAmount;	// 'return' the colour value for this fragment.
+	colour = lerp(colour, MossIntensity,	input.colour.x);
+	colour = lerp(colour, GrassIntensity,	input.colour.y);
+	colour = lerp(colour, AsphaltIntensity, input.colour.z);
+	
+	output.colour.xyz = colour * colourAmount;	// 'return' the colour value for this fragment.
 	output.colour.w = 1;
 }
