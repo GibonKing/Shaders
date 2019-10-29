@@ -1,4 +1,5 @@
 ﻿FXC : warning X4717: Effects deprecated for D3DCompiler_47
+F:\ThirdYear\RT3D\Shaders\Shaders\Shaders\Resources\ExampleShader.hlsl(95,22-48): warning X3206: implicit truncation of vector type
   
   compilation object save succeeded; see F:\ThirdYear\RT3D\Shaders\Shaders\Debug\ExampleShader.cso
   Shaders.vcxproj -> F:\ThirdYear\RT3D\Shaders\Shaders\Debug\Shaders.exe

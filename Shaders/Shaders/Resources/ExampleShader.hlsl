@@ -76,12 +76,22 @@ void VSMain(const VSInput input, out PSInput output)
 	float y = cos(radians((input.pos.y * 10) + g_frameCount * 4));
 	float z = sin(radians((input.pos.z * 02) + g_frameCount * 4));
 	output.pos = mul(input.pos, g_WVP) + float4(0, y, 0, 0);
-
+	output.normal = input.normal;
+	output.tex = input.tex;
 	output.colour = input.colour;
 }
 
 // The pixel shader entry point. This function writes out the fragment/pixel colour.
 void PSMain(const PSInput input, out PSOutput output)
 {
-	output.colour = float4(225/input.pos.y,0,0,1);	// 'return' the colour value for this fragment.
+	float3 colourAmount = float3(0.0f, 0.0f, 0.0f);
+	for (int i = 0; i < g_numLights; i++) {
+		float3 intensity = cos(dot(g_lightDirections[i].xyz, input.normal));
+		colourAmount += intensity * g_lightColours[i];
+	}
+
+	colourAmount /= g_numLights;
+
+	output.colour.xyz = input.colour * colourAmount;	// 'return' the colour value for this fragment.
+	output.colour.w = 1;
 }
