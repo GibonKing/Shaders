@@ -91,7 +91,7 @@ void PSMain(const PSInput input, out PSOutput output)
 	//Lighting
 	float3 colourAmount = float3(0.0f, 0.0f, 0.0f);
 	for (int i = 0; i < g_numLights; i++) {
-		float3 intensity = cos(dot(g_lightDirections[i].xyz, input.normal));
+		float3 intensity = dot(g_lightDirections[i].xyz, input.normal);
 		colourAmount += intensity * g_lightColours[i];
 	}
 
@@ -99,7 +99,7 @@ void PSMain(const PSInput input, out PSOutput output)
 	float4 MossIntensity	= g_texture0.Sample(g_sampler, input.tex);
 	float4 GrassIntensity	= g_texture1.Sample(g_sampler, input.tex);
 	float4 AsphaltIntensity = g_texture2.Sample(g_sampler, input.tex);
-	float3 colour = (0.0f, 0.0f, 0.0f);
+	float3 colour = (1.0f, 1.0f, 1.0f);
 
 	colour = lerp(colour, MossIntensity,	input.colour.x);
 	colour = lerp(colour, GrassIntensity,	input.colour.y);

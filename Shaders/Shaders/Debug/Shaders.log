@@ -1,9 +1,9 @@
 ﻿FXC : warning X4717: Effects deprecated for D3DCompiler_47
-F:\ThirdYear\RT3D\Shaders\Shaders\Shaders\Resources\ExampleShader.hlsl(103,19-28): warning X3081: comma expression used where a vector constructor may have been intended
-F:\ThirdYear\RT3D\Shaders\Shaders\Shaders\Resources\ExampleShader.hlsl(103,19-34): warning X3081: comma expression used where a vector constructor may have been intended
-F:\ThirdYear\RT3D\Shaders\Shaders\Shaders\Resources\ExampleShader.hlsl(105,11-53): warning X3206: 'lerp': implicit truncation of vector type
-F:\ThirdYear\RT3D\Shaders\Shaders\Shaders\Resources\ExampleShader.hlsl(106,11-54): warning X3206: 'lerp': implicit truncation of vector type
-F:\ThirdYear\RT3D\Shaders\Shaders\Shaders\Resources\ExampleShader.hlsl(107,11-56): warning X3206: 'lerp': implicit truncation of vector type
-  
+F:\ThirdYear\RT3D\Shaders\Shaders\Shaders\Resources\ExampleShader.hlsl(102,19-28): warning X3081: comma expression used where a vector constructor may have been intended
   compilation object save succeeded; see F:\ThirdYear\RT3D\Shaders\Shaders\Debug\ExampleShader.cso
+F:\ThirdYear\RT3D\Shaders\Shaders\Shaders\Resources\ExampleShader.hlsl(102,19-34): warning X3081: comma expression used where a vector constructor may have been intended
+F:\ThirdYear\RT3D\Shaders\Shaders\Shaders\Resources\ExampleShader.hlsl(104,11-53): warning X3206: 'lerp': implicit truncation of vector type
+F:\ThirdYear\RT3D\Shaders\Shaders\Shaders\Resources\ExampleShader.hlsl(105,11-54): warning X3206: 'lerp': implicit truncation of vector type
+F:\ThirdYear\RT3D\Shaders\Shaders\Shaders\Resources\ExampleShader.hlsl(106,11-56): warning X3206: 'lerp': implicit truncation of vector type
+  
   Shaders.vcxproj -> F:\ThirdYear\RT3D\Shaders\Shaders\Debug\Shaders.exe
